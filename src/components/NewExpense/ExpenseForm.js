@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+const ExpenseForm = (props) => {
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
 
   //we can also implement it by using only one state by below method i.e making a object of the whole
   //For Alternative 1 and Alternative 2
@@ -54,12 +54,13 @@ const ExpenseForm = () => {
     //... so to prevent it we use this
     event.preventDefault();
 
-    const expenseDate = {
+    const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
-    console.log(expenseDate);
+
+    props.onSaveExpenseData(expenseData)
     //whenever the form gets submited it the inout fields reset to empty
     setEnteredTitle('')
     setEnteredAmount('')
