@@ -19,26 +19,26 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        <ExpenseItem
-          title={props.items[0].title}
-          amount={props.items[0].amount}
-          date={props.items[0].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.items[1].title}
-          amount={props.items[1].amount}
-          date={props.items[1].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.items[2].title}
-          amount={props.items[2].amount}
-          date={props.items[2].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.items[3].title}
-          amount={props.items[3].amount}
-          date={props.items[3].date}
-        ></ExpenseItem>
+        {
+          props.items.map((expense)=>(
+            <ExpenseItem
+            /*
+            react doesnt know how to differentiate between list elements .
+            so becuase of this whenever a new data in added t renders all the previous data also
+            which is bad for performanance and can also create some potential bugs 
+            like lossing the prev states of statefull componenets.
+            */
+            /* 
+            so to tackle with this we use KEY props which we can use in any components 
+            also the key props should always get a unique id which is possible in almost in every case
+            */
+            key = {expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+            />
+          ))
+        }
       </Card>
     </div>
   );

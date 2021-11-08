@@ -1,9 +1,10 @@
+import React ,{useState} from 'react';
+
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
 
-const App =() => {
-  //defined an array of objects 
-  const expenses = [
+//defined an array of objects 
+  const DUMMY_EXPENSES = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -25,9 +26,14 @@ const App =() => {
     },
   ];
 
+const App =() => {
+ const [expenses,setExpenses]= useState(DUMMY_EXPENSES)
+
   const addExpenseHandler = expense => {
-    console.log('In App.js')
-    console.log(expense)
+    //we use prevExpense as the previous state of the list then populate the remaining with the the prevExpenses
+    setExpenses((prevExpenses)=>{
+      return [expense, ...prevExpenses] 
+    })
   }
 
   return (
